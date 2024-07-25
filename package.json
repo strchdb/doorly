@@ -1,0 +1,25 @@
+{
+  "name": "doorly",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.mjs",
+  "scripts": {
+    "start": "node ./dist/index.js",
+    "build": "tsc",
+    "start:dev": "tsc-watch --onSuccess 'nodemon ./dist/server.mjs'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/ws": "^8.5.11",
+    "http-server": "^14.1.1",
+    "nodemon": "^3.1.4",
+    "ts-node": "^10.9.2",
+    "tsc-watch": "^6.2.0",
+    "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "ws": "^8.18.0"
+  }
+}
