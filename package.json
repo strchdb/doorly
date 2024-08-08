@@ -4,7 +4,8 @@
   "description": "",
   "main": "server.mjs",
   "scripts": {
-    "start": "concurrently \"npm run start:server\" \"npm run start:client\"",
+    "start": "pm2-runtime start dist/ecosystem.config.js",
+    "start:dev": "concurrently \"npm run start:server\" \"npm run start:client\"",
     "build": "tsc",
     "start:server": "tsc-watch --onSuccess 'nodemon ./dist/server.mjs'",
     "start:client": "npx http-server -p 7070 -a 127.0.0.1 -s -d false",
