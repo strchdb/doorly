@@ -3,11 +3,46 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Door Client</title>
+    <title>Doorly</title>
+    <script>
+      if (Notification.permission === "granted") {
+      } else if (Notification.permission === "default") {
+        $("#allow-push-notification-bar").show();
+      }
+
+      $("#allow-push-notification").click(function () {
+        $("#allow-push-notification-bar").hide();
+        Notification.requestPermission().then(function (status) {
+          if (status === "denied") {
+          } else if (status === "granted") {
+          }
+        });
+      });
+    </script>
   </head>
   <body style="background-color: #666666">
-    <h1>Door Client</h1>
     <canvas id="display"></canvas>
     <script type="module" src="./dist/client.mjs"></script>
+    <div id="allow-push-notification-bar" class="allow-push-notification-bar">
+      <div class="content">
+        <div class="text">Enable Browser Notifications?</div>
+        <div class="buttons-more">
+          <button
+            type="button"
+            class="ok-button button-1"
+            id="allow-push-notification"
+          >
+            Yes
+          </button>
+          <button
+            type="button"
+            class="ok-button button-1"
+            id="close-push-notification"
+          >
+            No
+          </button>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
