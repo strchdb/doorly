@@ -11,8 +11,8 @@ module.exports = {
     {
       name: "client",
       script: "npx",
-      args: "http-server -p 7070 -a 127.0.0.1",
-      watch: false,
+      args: `http-server -p 7070`,
+      watch: true,
       env: {
         NODE_ENV: "production",
       },

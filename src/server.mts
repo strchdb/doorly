@@ -8,7 +8,6 @@ import http from "http";
   const wss = new WebSocketServer({ port: common.SERVER_PORT });
   const clients = new Map<number, Client>();
   let idCounter = 0;
-  console.log(`ws://${common.SERVER}:${common.SERVER_PORT}/`);
   const doors: Door[] = [
     { id: 0, isOpen: false, x: 140, y: 10 },
     { id: 1, isOpen: true, x: 460, y: 110 },
@@ -48,7 +47,7 @@ import http from "http";
   });
 
   server.listen(common.DOOR_PORT, () => {
-    console.log(`HTTP server running on http://localhost/${common.DOOR_PORT}`);
+    console.log(`Door server running on http://localhost:${common.DOOR_PORT}`);
   });
 
   wss.on("connection", (ws) => {

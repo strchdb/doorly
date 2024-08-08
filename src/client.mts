@@ -8,7 +8,7 @@ import { Door } from "./common.mjs";
   canvas.width = common.DISPLAY_WIDTH;
   const ctx = canvas.getContext("2d");
   if (ctx === null) throw new Error("2d canvas is not supported");
-  draw(ctx, canvas.height, canvas.width);
+  draw(ctx);
   const ws = new WebSocket(`ws://${common.SERVER}:${common.SERVER_PORT}`);
   let doors = [];
   ws.onopen = () => {
@@ -17,10 +17,9 @@ import { Door } from "./common.mjs";
   };
 
   ws.onmessage = (event) => {
-    console.log("Message from server:", JSON.parse(event.data));
     const payload: Door[] = JSON.parse(event.data);
     doors = payload;
-    draw(ctx, canvas.height, canvas.width, doors);
+    draw(ctx, doors);
     if ("Notification" in window) {
       Notification.requestPermission().then(function (permission) {
         if (permission === "granted") {
@@ -43,12 +42,9 @@ import { Door } from "./common.mjs";
   };
 })();
 
-function draw(
-  ctx: CanvasRenderingContext2D,
-  height: number,
-  width: number,
-  doors?: Door[]
-) {
+function draw(ctx: CanvasRenderingContext2D, doors?: Door[]) {
+  const height = ctx.canvas.height;
+  const width = ctx.canvas.width;
   ctx.clearRect(0, 0, width, height);
   ctx.fillStyle = "#111111";
   ctx.fillRect(0, 0, width, height);
