@@ -47,8 +47,8 @@ import http from "http";
     }
   });
 
-  server.listen(8080, () => {
-    console.log("HTTP server running on http://localhost:8080/");
+  server.listen(common.DOOR_PORT, () => {
+    console.log(`HTTP server running on http://localhost/${common.DOOR_PORT}`);
   });
 
   wss.on("connection", (ws) => {
@@ -62,6 +62,10 @@ import http from "http";
 
     ws.on("message", (message) => {
       console.log(`Received message: ${message}`);
+    });
+
+    ws.on("error", (event) => {
+      console.log(`Error:  error: ${event}`);
     });
 
     ws.on("close", () => {

@@ -24,8 +24,8 @@ import { Door } from "./common.mjs";
     if ("Notification" in window) {
       Notification.requestPermission().then(function (permission) {
         if (permission === "granted") {
-          const notification = new Notification("Hello!", {
-            body: "This is a notification sent from JavaScript!",
+          const notification = new Notification("Doorly!", {
+            body: "Door status changed",
             tag: "DoorAlert",
           });
           notification.onclick = function () {

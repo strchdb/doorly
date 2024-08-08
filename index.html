@@ -4,45 +4,59 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Doorly</title>
-    <script>
-      if (Notification.permission === "granted") {
-      } else if (Notification.permission === "default") {
-        $("#allow-push-notification-bar").show();
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+      .allow-push-notification-bar {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #333;
+        color: #fff;
+        padding: 10px;
+        text-align: center;
       }
-
-      $("#allow-push-notification").click(function () {
-        $("#allow-push-notification-bar").hide();
-        Notification.requestPermission().then(function (status) {
-          if (status === "denied") {
-          } else if (status === "granted") {
-          }
-        });
-      });
-    </script>
+      .ok-button {
+        margin: 5px;
+      }
+    </style>
   </head>
   <body style="background-color: #666666">
     <canvas id="display"></canvas>
     <script type="module" src="./dist/client.mjs"></script>
     <div id="allow-push-notification-bar" class="allow-push-notification-bar">
       <div class="content">
-        <div class="text">Enable Browser Notifications?</div>
         <div class="buttons-more">
           <button
             type="button"
             class="ok-button button-1"
             id="allow-push-notification"
           >
-            Yes
-          </button>
-          <button
-            type="button"
-            class="ok-button button-1"
-            id="close-push-notification"
-          >
-            No
+            Enable Browser Notifications?
           </button>
         </div>
       </div>
     </div>
+
+    <script>
+      $(document).ready(function () {
+        $("#allow-push-notification-bar").show();
+        $("#allow-push-notification").click(function () {
+          $("#allow-push-notification-bar").hide();
+          Notification.requestPermission().then(function (status) {
+            if (status === "denied") {
+              console.log("Notification permission denied.");
+            } else if (status === "granted") {
+              const noti = new Notification("Doorly!", {
+                body: "Door status changed",
+                tag: "DoorAlert",
+              });
+              console.log("Notification permission granted.");
+            }
+          });
+        });
+      });
+    </script>
   </body>
 </html>
