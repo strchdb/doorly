@@ -9,7 +9,7 @@ import { Door } from "./common.mjs";
   const ctx = canvas.getContext("2d");
   if (ctx === null) throw new Error("2d canvas is not supported");
   draw(ctx);
-  const ws = new WebSocket(`ws://${common.SERVER}:${common.SERVER_PORT}`);
+  const ws = new WebSocket(`ws://${process.env.SERVER}:${common.SERVER_PORT}`);
   let doors = [];
   ws.onopen = () => {
     console.log("WebSocket connected!");

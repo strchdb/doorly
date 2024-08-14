@@ -3,6 +3,7 @@ import * as common from "./common.mjs";
 import { Client } from "./common.mjs";
 import { Door } from "./common.mjs";
 import http from "http";
+import "dotenv/config";
 
 (async () => {
   const wss = new WebSocketServer({ port: common.SERVER_PORT });

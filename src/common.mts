@@ -1,7 +1,6 @@
 export const SERVER_PORT = 6969;
 export const CLIENT_PORT = 7070;
 export const DOOR_PORT = 7171;
-export const SERVER = "localhost";
 export const DISPLAY_WIDTH = 640;
 export const DISPLAY_HEIGHT = 480;
 export const WALLS = [

@@ -15,6 +15,7 @@ module.exports = {
       watch: true,
       env: {
         NODE_ENV: "production",
+        SERVER: "10.10.10.30",
       },
     },
   ],
